@@ -1,26 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useSelector } from 'react-redux';
+import { Upload } from './components/Upload';
+import ThemeMenu from './thememenu/ThemeMenu';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => {
+	let themeReducer = useSelector((state) => state.Theme.mode);
+	let colorMode = useSelector((state) => state.Theme.color);
+	return (
+		<div
+			style={{
+				backgroundColor:
+					themeReducer === 'theme-mode-dark' ? '#3d3838' : 'white',
+				height: '100vh',
+			}}
+		>
+			<ThemeMenu />
+			<Upload />
+		</div>
+	);
+};
 
 export default App;
